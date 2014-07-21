@@ -9,6 +9,7 @@ target "UbitInfo-iOS" do
   pod "MBProgressHUD", "~> 0.8"
   pod "AFNetworking", "~> 2.0"
   pod "FormatterKit"
+# pod "XLForm", "~> 2.0"
 end
 
 target "UbitInfo-iOSTests" do

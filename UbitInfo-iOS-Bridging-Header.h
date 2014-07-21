@@ -10,6 +10,8 @@
 #import <MBProgressHUD.h>
 #import <AFNetworking.h>
 
+#import "XL/XLForm.h"
+
 // FormatterKit
 #import <TTTTimeIntervalFormatter.h>
 
