@@ -24,6 +24,15 @@ class AccountViewController: XLFormViewController {
         } else {
             drawGuestView()
         }
+        
+        HttpClient.instance.manager.GET("http://ubit.info:3000/!/user/config", parameters: nil, success: {
+                    (operation: AFHTTPRequestOperation!, response: AnyObject!) in
+            println(operation, response)
+            
+            }, failure: {
+                (operation: AFHTTPRequestOperation!, error: NSError!) in
+                println(operation.responseString)
+            })
     }
     
     func updateFormValues() {
@@ -78,6 +87,21 @@ class AccountViewController: XLFormViewController {
     func drawUserView() {
         var button: UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
         self.navigationItem.rightBarButtonItem = button
+        
+        var form: XLFormDescriptor = XLFormDescriptor.formDescriptorWithTitle("Account")
+        var section: XLFormSectionDescriptor = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
+        var row: XLFormRowDescriptor
+        
+        form.addFormSection(section)
+        
+        row = XLFormRowDescriptor.formRowDescriptorWithTag("pfImage", rowType: "textView", title: "")
+//        row.cellConfigAtConfigure.setObject("adsf", forKey: "value")
+        section.addFormRow(row)
+        
+        var image = UIImage(named: "Checkmark.png")
+        self.tableView.tableHeaderView = UIImageView(image: image)
+        
+        self.form = form
         
         self.viewWillAppear(false)
     }

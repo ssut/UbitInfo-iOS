@@ -36,8 +36,12 @@ class HttpClient {
     var loggedIn: Bool = false
     
     init() {
-//        manager.requestSerializer = AFJSONRequestSerializer()
+        var contentTypes: NSMutableSet = NSMutableSet()
+        contentTypes.addObject("application/json")
+        contentTypes.addObject("text/html")
+        
         manager.requestSerializer.setValue(CLIENT_NAME, forHTTPHeaderField: "X-API-Host")
+        manager.responseSerializer.acceptableContentTypes = contentTypes
         manager.securityPolicy.allowInvalidCertificates = true
     }
     
@@ -89,6 +93,16 @@ class HttpClient {
                     var code = -1
                     if let c = json["code"].integer {
                         if c == 0 {
+                            // set cookie to client -- very dirty code block
+                            var cookies =
+                            NSHTTPCookie.cookiesWithResponseHeaderFields(operation.response.allHeaderFields?, forURL: NSURL(string: URL_PREFIX))
+                            for cookie in cookies {
+                                    NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie as NSHTTPCookie)
+                            }
+                            var config = NSURLSessionConfiguration.defaultSessionConfiguration()
+                            config.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+
+                            // save login data
                             let user: Dictionary<String, String> = [
                                 "userId": userId,
                                 "userPass": userPass
@@ -126,5 +140,13 @@ class HttpClient {
             "userId": "",
             "userPass": ""
         ])
+    }
+    
+    func getUserInfo() {
+        if !self.loggedIn {
+            return
+        }
+        
+        
     }
 }
