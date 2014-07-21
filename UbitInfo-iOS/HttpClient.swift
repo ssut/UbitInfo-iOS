@@ -65,6 +65,10 @@ class HttpClient {
     }
     
     func login(userId: String, userPass: String, callback: (Bool, String) -> Void) {
+        if userId == "" || userPass == "" {
+            return
+        }
+        
         getToken({ (token: String) in
             if token == "" {
                 callback(false, ERR_FETCH_TOKEN)
@@ -83,9 +87,13 @@ class HttpClient {
                     (operation: AFHTTPRequestOperation!, response: AnyObject!) in
                     var json = JSONValue(response)
                     var code = -1
-                    println(json)
                     if let c = json["code"].integer {
                         if c == 0 {
+                            let user: Dictionary<String, String> = [
+                                "userId": userId,
+                                "userPass": userPass
+                            ]
+                            DataManager.instance.setData("user", data: user)
                             HttpClient.instance.loggedIn = true
                             callback(true, SUCCESS)
                         } else if c == 1 {
@@ -110,5 +118,13 @@ class HttpClient {
                 }
             )
         })
+    }
+    
+    func logout() {
+        self.loggedIn = false
+        DataManager.instance.setData("user", data: [
+            "userId": "",
+            "userPass": ""
+        ])
     }
 }

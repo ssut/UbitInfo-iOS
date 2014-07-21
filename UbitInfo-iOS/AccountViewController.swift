@@ -127,6 +127,10 @@ class AccountViewController: XLFormViewController {
     }
     
     func logout(sender: AnyObject) {
-        
+        HttpClient.instance.logout()
+        self.tableView.reloadData()
+        self.viewDidLoad()
+        self.viewWillAppear(true)
+        self.view.setNeedsDisplay()
     }
 }

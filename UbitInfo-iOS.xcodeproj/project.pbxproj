@@ -404,6 +404,7 @@
 		89496474197CF19E009984EB /* Wallet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8949640E197CF19E009984EB /* Wallet@2x.png */; };
 		89496475197CF19E009984EB /* Widescreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8949640F197CF19E009984EB /* Widescreen.png */; };
 		89496476197CF19E009984EB /* Widescreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89496410197CF19E009984EB /* Widescreen@2x.png */; };
+		8949DF63197CFA4100824109 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8949DF62197CFA4100824109 /* DataManager.swift */; };
 		896FCFBE197AB2EC000DB9C7 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896FCFBD197AB2EC000DB9C7 /* HttpClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -894,6 +895,7 @@
 		8949640E197CF19E009984EB /* Wallet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Wallet@2x.png"; sourceTree = "<group>"; };
 		8949640F197CF19E009984EB /* Widescreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Widescreen.png; sourceTree = "<group>"; };
 		89496410197CF19E009984EB /* Widescreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Widescreen@2x.png"; sourceTree = "<group>"; };
+		8949DF62197CFA4100824109 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		896FCFB6197A78C1000DB9C7 /* UbitInfo-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UbitInfo-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		896FCFBD197AB2EC000DB9C7 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		CEB6F27B398B4DF5995D79F7 /* Pods-UbitInfo-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UbitInfo-iOS.xcconfig"; path = "Pods/Pods-UbitInfo-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -1236,6 +1238,7 @@
 				89307F62197B96CA00C3997C /* JSON.swift */,
 				8900D2EE197BDE440032753D /* MainController.swift */,
 				8945078C197BF261006765FE /* AccountViewController.swift */,
+				8949DF62197CFA4100824109 /* DataManager.swift */,
 			);
 			path = "UbitInfo-iOS";
 			sourceTree = "<group>";
@@ -2063,6 +2066,7 @@
 				89450856197CABDA006765FE /* XLFormSectionDescriptor.m in Sources */,
 				8945085A197CABDA006765FE /* XLFormRightDetailCell.m in Sources */,
 				89450857197CABDA006765FE /* NSArray+XLFormAdditions.m in Sources */,
+				8949DF63197CFA4100824109 /* DataManager.swift in Sources */,
 				89450845197CABDA006765FE /* XLFormCheckCell.m in Sources */,
 				8945084D197CABDA006765FE /* XLFormStepCounterCell.m in Sources */,
 				89450844197CABDA006765FE /* XLFormButtonCell.m in Sources */,
