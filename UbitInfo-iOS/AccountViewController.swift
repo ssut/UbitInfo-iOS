@@ -125,18 +125,19 @@ class AccountViewController: XLFormViewController {
             let userId = self.values["id"] as AnyObject? as? String
             let userPass = self.values["password"] as AnyObject? as? String
             
+            self.hud.mode = MBProgressHUDModeIndeterminate
             self.hud.show(true)
             HttpClient.instance.login(userId!, userPass: userPass!, callback: {
                 (success: Bool, message: String) in
                 if !success {
                     self.hud.mode = MBProgressHUDModeText
                     self.hud.labelText = message
-                    self.hud.hide(true, afterDelay: 3)
+                    self.hud.hide(true, afterDelay: 1)
                 } else {
                     self.hud.customView = UIImageView(image: UIImage(named: "Checkmark.png"))
                     self.hud.mode = MBProgressHUDModeCustomView
-                    self.hud.labelText = "Completed"
-                    self.hud.hide(true, afterDelay: 3)
+                    self.hud.labelText = "Login Success"
+                    self.hud.hide(true, afterDelay: 1)
                     
                     self.form = nil
                     self.reloadFormRow(nil)
