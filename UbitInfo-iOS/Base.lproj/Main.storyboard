@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="14A283o" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
@@ -54,7 +53,7 @@
             <objects>
                 <tabBarController id="49e-Tb-3d3" customClass="MainController" customModule="UbitInfo_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="d20-6m-zor"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
@@ -156,7 +155,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Jod-6w-z8c" kind="push" id="fBu-3n-Dl9"/>
+                                            <segue destination="Fb8-ta-qtl" kind="push" id="oyO-Jv-RSQ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="opx-Qu-hQm">
@@ -186,19 +185,31 @@
             <point key="canvasLocation" x="2560" y="2893"/>
         </scene>
         <!--Account-->
-        <scene sceneID="juF-1D-d0z">
+        <scene sceneID="p09-m8-leU">
             <objects>
-                <viewController id="Jod-6w-z8c" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vOf-cA-ael">
+                <tableViewController id="Fb8-ta-qtl" customClass="AccountViewController" customModule="UbitInfo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="w7M-j1-3GB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Account" id="jx0-vH-M0q"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cyB-QH-0ig" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jHD-oh-FGz">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jHD-oh-FGz" id="RRq-iz-2CF">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Fb8-ta-qtl" id="gWR-4j-E3c"/>
+                            <outlet property="delegate" destination="Fb8-ta-qtl" id="6Uk-GK-vbe"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Account" id="DsN-2Y-MSF"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5gD-vd-HyR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3063" y="2893"/>
+            <point key="canvasLocation" x="2967" y="2893"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WKt-CP-LK3">
