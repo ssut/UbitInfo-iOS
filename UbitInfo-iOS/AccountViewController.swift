@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 ssut. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class AccountViewController: XLFormViewController {
@@ -14,6 +15,8 @@ class AccountViewController: XLFormViewController {
     
     override func viewDidLoad()  {
         super.viewDidLoad()
+        
+        self.view.endEditing(true)
         
         // HUD
         self.hud = MBProgressHUD(view: self.view)
@@ -24,15 +27,6 @@ class AccountViewController: XLFormViewController {
         } else {
             drawGuestView()
         }
-        
-        HttpClient.instance.manager.GET("http://ubit.info:3000/!/user/config", parameters: nil, success: {
-                    (operation: AFHTTPRequestOperation!, response: AnyObject!) in
-            println(operation, response)
-            
-            }, failure: {
-                (operation: AFHTTPRequestOperation!, error: NSError!) in
-                println(operation.responseString)
-            })
     }
     
     func updateFormValues() {
@@ -97,12 +91,34 @@ class AccountViewController: XLFormViewController {
         row = XLFormRowDescriptor.formRowDescriptorWithTag("pfImage", rowType: "textView", title: "")
         section.addFormRow(row)
         
-        var image = UIImage(named: "Checkmark.png")
-        self.tableView.tableHeaderView = UIImageView(image: image)
+        var imageView = UIImageView()
+        imageView.imageURL = NSURL(string: "https://ubit.info/@images/jubility/10_0")
+        imageView.addObserver(self, forKeyPath: "image", options: NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Old, context: nil)
+        imageView.frame = CGRectMake(0, 0, 80, 80)
+        imageView.contentMode = UIViewContentMode.Center
+        
+        self.tableView.tableHeaderView = imageView
         
         self.form = form
         
         self.viewWillAppear(false)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafePointer<()>) {
+        if keyPath == "image" {
+            if let url = object.imageURL {
+                if url.absoluteString.rangeOfString("jubility") {
+                    var im = object as UIImageView
+                    if im.image.size.width > 80 {
+                        im.image = scaleImage(im.image, CGSizeMake(80, 80))
+                    }
+                }
+            }
+        }
+//        if object.imageURL && keyPath == "image" {
+//            println("observer work")
+//            object.removeObserver(self)
+//        }
     }
     
     func login(sender: AnyObject) {

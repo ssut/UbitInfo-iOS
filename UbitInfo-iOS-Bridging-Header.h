@@ -9,6 +9,7 @@
 #import <TSMessage.h>
 #import <MBProgressHUD.h>
 #import <AFNetworking.h>
+#import <AsyncImageView.h>
 
 #import "XL/XLForm.h"
 
