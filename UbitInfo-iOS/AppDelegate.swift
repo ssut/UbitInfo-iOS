@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 ssut. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 @UIApplicationMain
@@ -13,24 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
-        // Override point for customization after application launch.
-        if let user = DataManager.instance.getData("user") as? Dictionary<String, String> {
-            if let userId: String = user["userId"] {
-                if let userPass: String = user["userPass"] {
-                    HttpClient.instance.login(userId, userPass: userPass, callback: {
-                        (success: Bool, error: String) in
-                        if !success {
-                            HttpClient.instance.logout()
-                            println("AppDelegate: Login Failed")
-                        } else {
-                            println("AppDelegate: Login Success")
-                        }
-                    })
-                }
-            }
-        }
-        
-
         return true
     }
 

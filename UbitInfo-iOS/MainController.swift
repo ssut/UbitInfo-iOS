@@ -10,6 +10,9 @@ import UIKit
 
 class MainController: UITabBarController {
     @IBOutlet var tabbar: UITabBar
+    
+    var hud: MBProgressHUD = MBProgressHUD()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +23,40 @@ class MainController: UITabBarController {
             i.title = nil
             
             i.image = UIImage(named: "+.png")
+        }
+        
+        // HUD
+        self.hud = MBProgressHUD(view: self.view)
+        self.hud.labelText = "Logging in.."
+        self.view.addSubview(hud)
+        
+        if let user = DataManager.instance.getData("user") as? Dictionary<String, String> {
+            if let userId: String = user["userId"] {
+                if let userPass: String = user["userPass"] {
+                    self.hud.show(true)
+                    HttpClient.instance.login(userId, userPass: userPass, callback: {
+                        (success: Bool, error: String) in
+                        if !success {
+                            HttpClient.instance.logout()
+                            println("AppDelegate: Login Failed")
+                            
+                            self.hud.customView = UIImageView(image: UIImage(named: "Close-Line.png"))
+                            self.hud.mode = MBProgressHUDModeCustomView
+                            self.hud.labelText = "Login Failed"
+                            self.hud.hide(true, afterDelay: 0.7)
+                        } else {
+                            println("AppDelegate: Login Success")
+                            
+                            self.hud.customView = UIImageView(image: UIImage(named: "Checkmark.png"))
+                            self.hud.mode = MBProgressHUDModeCustomView
+                            self.hud.labelText = "Logged In"
+                            self.hud.hide(true, afterDelay: 0.7)
+                        }
+                        
+                        
+                    })
+                }
+            }
         }
     }
 }
