@@ -36,12 +36,12 @@ class HttpClient {
     var loggedIn: Bool = false
     
     init() {
-        var contentTypes: NSMutableSet = NSMutableSet()
-        contentTypes.addObject("application/json")
-        contentTypes.addObject("text/html")
+//        var contentTypes: NSMutableSet = NSMutableSet()
+//        contentTypes.addObject("application/json")
+//        contentTypes.addObject("text/html")
         
         manager.requestSerializer.setValue(CLIENT_NAME, forHTTPHeaderField: "X-API-Host")
-        manager.responseSerializer.acceptableContentTypes = contentTypes
+//        manager.responseSerializer.acceptableContentTypes = contentTypes
         manager.securityPolicy.allowInvalidCertificates = true
     }
     

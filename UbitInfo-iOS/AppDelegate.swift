@@ -21,11 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         (success: Bool, error: String) in
                         if !success {
                             HttpClient.instance.logout()
+                            println("AppDelegate: Login Failed")
+                        } else {
+                            println("AppDelegate: Login Success")
                         }
                     })
                 }
             }
         }
+        
 
         return true
     }
