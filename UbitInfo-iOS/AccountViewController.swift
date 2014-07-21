@@ -95,7 +95,6 @@ class AccountViewController: XLFormViewController {
         form.addFormSection(section)
         
         row = XLFormRowDescriptor.formRowDescriptorWithTag("pfImage", rowType: "textView", title: "")
-//        row.cellConfigAtConfigure.setObject("adsf", forKey: "value")
         section.addFormRow(row)
         
         var image = UIImage(named: "Checkmark.png")
@@ -152,6 +151,9 @@ class AccountViewController: XLFormViewController {
     
     func logout(sender: AnyObject) {
         HttpClient.instance.logout()
+        self.tableView.tableHeaderView = nil
+        self.form = nil
+        self.reloadFormRow(nil)
         self.tableView.reloadData()
         self.viewDidLoad()
         self.viewWillAppear(true)

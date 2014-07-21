@@ -140,6 +140,16 @@ class HttpClient {
             "userId": "",
             "userPass": ""
         ])
+        
+        // delete cookies
+        var cookies: Array = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies
+        for cookie in cookies {
+            let c: NSHTTPCookie = cookie as NSHTTPCookie
+            NSHTTPCookieStorage.sharedHTTPCookieStorage().deleteCookie(c)
+        }
+        
+        var config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        config.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
     }
     
     func getUserInfo() {
