@@ -93,33 +93,35 @@ class AccountViewController: XLFormViewController {
         
         var imageView = UIImageView()
         imageView.imageURL = NSURL(string: "https://ubit.info/@images/jubility/10_0")
-        imageView.addObserver(self, forKeyPath: "image", options: NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Old, context: nil)
         imageView.frame = CGRectMake(0, 0, 80, 80)
         imageView.contentMode = UIViewContentMode.Center
-        
         self.tableView.tableHeaderView = imageView
+        
+        // watch imageView.image -- KVO has a problem at removeObserver
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            while true {
+                println(imageView)
+                if imageView != nil {
+                    if imageView.image != nil {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            imageView.image = scaleImage(imageView.image, CGSizeMake(80, 80))
+                            imageView.setNeedsDisplay()
+                        }
+                        break
+                    }
+                } else {
+                    break
+                }
+                
+                NSThread.sleepForTimeInterval(0.1)
+            }
+            return Void()
+        }
         
         self.form = form
         
         getUserInfo()
         self.viewWillAppear(false)
-    }
-    
-    override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafePointer<()>) {
-        if keyPath == "image" {
-            if let url = object.imageURL {
-                if url.absoluteString.rangeOfString("jubility") {
-                    var im = object as UIImageView
-                    if im.image.size.width > 80 {
-                        im.image = scaleImage(im.image, CGSizeMake(80, 80))
-                    }
-                }
-            }
-        }
-//        if object.imageURL && keyPath == "image" {
-//            println("observer work")
-//            object.removeObserver(self)
-//        }
     }
     
     func login(sender: AnyObject) {
