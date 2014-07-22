@@ -78,7 +78,10 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             if direct {
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                dispatch_async(dispatch_get_main_queue()) {
+                    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                    return
+                }
             }
             
             HttpClient.newManager().GET(URL_STATUS,
@@ -113,7 +116,7 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             self.tableView.reloadData()
                         }
                         
-                        return Void()
+                        return
                     }
                 },
                 failure: {
@@ -124,11 +127,11 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     dispatch_async(dispatch_get_main_queue()) {
                         MBProgressHUD.hideHUDForView(self.view, animated: true)
                         
-                        return Void()
+                        return
                     }
             })
             
-            return Void()
+            return
         }
     }
 

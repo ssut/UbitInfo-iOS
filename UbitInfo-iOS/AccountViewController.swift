@@ -115,7 +115,7 @@ class AccountViewController: XLFormViewController {
                 
                 NSThread.sleepForTimeInterval(0.1)
             }
-            return Void()
+            return
         }
         
         self.form = form
