@@ -30,5 +30,9 @@ class JSONStatus {
         self.req_result = req_result
         self.bind_id = bind_id
     }
+}
 
+struct JSONUserInfo {
+    var code: Int
+    var data: Dictionary<String, AnyObject?>?
 }

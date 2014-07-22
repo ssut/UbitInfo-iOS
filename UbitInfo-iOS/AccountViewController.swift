@@ -22,7 +22,13 @@ class AccountViewController: XLFormViewController {
         self.hud = MBProgressHUD(view: self.view)
         self.view.addSubview(hud)
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "")
+        self.refreshControl.addTarget(self, action: "getUserInfoWithControl:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        
         if HttpClient.instance.loggedIn {
+            self.tableView!.addSubview(refreshControl)
             drawUserView()
         } else {
             drawGuestView()
@@ -100,7 +106,6 @@ class AccountViewController: XLFormViewController {
         // watch imageView.image -- KVO has a problem at removeObserver
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while true {
-                println(imageView)
                 if imageView != nil {
                     if imageView.image != nil {
                         dispatch_async(dispatch_get_main_queue()) {
@@ -120,7 +125,7 @@ class AccountViewController: XLFormViewController {
         
         self.form = form
         
-        getUserInfo()
+        getUserInfo(true)
         self.viewWillAppear(false)
     }
     
@@ -145,6 +150,7 @@ class AccountViewController: XLFormViewController {
             let userPass = self.values["password"] as AnyObject? as? String
             
             self.hud.mode = MBProgressHUDModeIndeterminate
+            self.hud.labelText = ""
             self.hud.show(true)
             HttpClient.instance.login(userId!, userPass: userPass!, callback: {
                 (success: Bool, message: String) in
@@ -180,12 +186,17 @@ class AccountViewController: XLFormViewController {
         self.view.setNeedsDisplay()
     }
     
-    func getUserInfo() {
+    func getUserInfo(direct: Bool) {
         HttpClient.instance.getUserQuery(QUERY_INFO,
             queryParam: nil,
             callback: {
-                (success: Bool, data: Dictionary<String, AnyObject?>?) in
-                println(success)
+                (success: Bool, message: String, data: Dictionary<String, AnyObject?>?) in
+                println("getUserInfo", success, message)
+
             })
+    }
+    
+    func getUserInfoWithControl(sender: AnyObject) {
+        getUserInfo(false)
     }
 }
