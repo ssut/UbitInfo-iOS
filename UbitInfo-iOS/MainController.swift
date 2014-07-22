@@ -8,20 +8,20 @@
 
 import UIKit
 
+var mainControllerLoadCompleted: Bool = false
 class MainController: UITabBarController {
-    @IBOutlet var tabbar: UITabBar
+    @IBOutlet var tabbar: UITabBar!
     
     var hud: MBProgressHUD = MBProgressHUD()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let offset: CGFloat = 7
-        for item in tabbar.items {
+        let offset: CGFloat = 7.0
+        for item in self.tabbar.items {
             var i = item as UITabBarItem
             i.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0)
             i.title = nil
-            
             i.image = UIImage(named: "+.png")
         }
         
@@ -33,19 +33,23 @@ class MainController: UITabBarController {
         if let user = DataManager.instance.getData("user") as? Dictionary<String, String> {
             if let userId: String = user["userId"] {
                 if let userPass: String = user["userPass"] {
+                    if userId == "" || userPass == "" {
+                        mainControllerLoadCompleted = true
+                        return
+                    }
                     self.hud.show(true)
                     HttpClient.instance.login(userId, userPass: userPass, callback: {
                         (success: Bool, error: String) in
                         if !success {
                             HttpClient.instance.logout()
-                            println("AppDelegate: Login Failed")
+                            println("Main: Login Failed")
                             
                             self.hud.customView = UIImageView(image: UIImage(named: "Close-Line.png"))
                             self.hud.mode = MBProgressHUDModeCustomView
                             self.hud.labelText = "Login Failed"
                             self.hud.hide(true, afterDelay: 0.7)
                         } else {
-                            println("AppDelegate: Login Success")
+                            println("Main: Login Success")
                             
                             self.hud.customView = UIImageView(image: UIImage(named: "Checkmark.png"))
                             self.hud.mode = MBProgressHUDModeCustomView
@@ -53,7 +57,7 @@ class MainController: UITabBarController {
                             self.hud.hide(true, afterDelay: 0.7)
                         }
                         
-                        
+                        mainControllerLoadCompleted = true
                     })
                 }
             }

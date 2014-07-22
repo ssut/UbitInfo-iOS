@@ -11,7 +11,13 @@ let CLIENT_NAME: String = "UbitInfo-iOS"
 let URL_PREFIX: String = "http://ubit.info:3000"
 let URL_STATUS = URL_PREFIX + "/!/status"
 let URL_LOGIN = URL_PREFIX + "/!/user/entry"
+let URL_CHECK_LOGGED = URL_PREFIX + "/!/check"
 let URL_TOKEN = URL_PREFIX + "/!/token"
+let URL_USER_INFO = URL_PREFIX + "/%@/info"
+
+let QUERY_INFO = "info"
+let QUERY_RECENT = ""
+let QUERY_ALL = "all"
 
 let SUCCESS = ""
 let ERR_NETWORK = "Network error"
@@ -36,13 +42,15 @@ class HttpClient {
     var loggedIn: Bool = false
     
     init() {
-//        var contentTypes: NSMutableSet = NSMutableSet()
-//        contentTypes.addObject("application/json")
-//        contentTypes.addObject("text/html")
+        self.manager = HttpClient.newManager()
+    }
+    
+    class func newManager() -> AFHTTPRequestOperationManager {
+        var m: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager()
+        m.requestSerializer.setValue(CLIENT_NAME, forHTTPHeaderField: "X-API-Host")
+        m.securityPolicy.allowInvalidCertificates = true
         
-        manager.requestSerializer.setValue(CLIENT_NAME, forHTTPHeaderField: "X-API-Host")
-//        manager.responseSerializer.acceptableContentTypes = contentTypes
-        manager.securityPolicy.allowInvalidCertificates = true
+        return m
     }
     
     func getToken(callback: (String) -> Void) {
@@ -70,6 +78,7 @@ class HttpClient {
     
     func login(userId: String, userPass: String, callback: (Bool, String) -> Void) {
         if userId == "" || userPass == "" {
+            callback(false, "")
             return
         }
         
@@ -152,11 +161,62 @@ class HttpClient {
         config.HTTPCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
     }
     
-    func getUserInfo() {
+    func checkLoggedIn(callback: (Bool, String) -> Void) {
         if !self.loggedIn {
+            callback(false, "")
             return
         }
         
-        
+        HttpClient.instance.manager.GET(URL_CHECK_LOGGED,
+            parameters: nil,
+            success: {
+                (operation: AFHTTPRequestOperation!, response: AnyObject!) in
+                var json = JSONValue(response)
+                
+                if let logged = json["logged_in"].bool {
+                    if logged {
+                        let userId = json["user_id"].string as String
+                        callback(true, userId)
+                    } else {
+                        HttpClient.instance.logout()
+                        callback(false, "")
+                    }
+                }
+                return Void()
+            }, failure: {
+                (operation: AFHTTPRequestOperation!, error: NSError!) in
+                println(error)
+                callback(false, "")
+                return Void()
+            }
+        )
+    }
+    
+    func getUserQuery(query: String, queryParam: Array<String>?, callback: (Bool, Dictionary<String, AnyObject?>?) -> Void) {
+        HttpClient.instance.checkLoggedIn({
+            (loggedIn: Bool, userId: String) in
+            if !loggedIn {
+                callback(false, nil)
+                return
+            }
+            
+            var url: String = ""
+            if query == QUERY_INFO {
+                url = String(format: URL_USER_INFO, userId)
+            }
+            HttpClient.instance.manager.GET(url,
+                parameters: nil,
+                success: {
+                    (operation: AFHTTPRequestOperation!, response: AnyObject!) in
+                    println(response)
+                    callback(true, nil)
+                },
+                failure: {
+                    (operation: AFHTTPRequestOperation!, error: NSError!) in
+                    println(error)
+                    callback(false, nil)
+                }
+            )
+        })
     }
 }

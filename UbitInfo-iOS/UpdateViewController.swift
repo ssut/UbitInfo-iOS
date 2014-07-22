@@ -13,14 +13,14 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var dataArray = NSMutableArray()
     var lastUpdate: NSDate = NSDate()
     
-    @IBOutlet var tableView: UITableView
+    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "")
         self.refreshControl.addTarget(self, action: "reload:", forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(refreshControl)
+        self.tableView!.addSubview(refreshControl)
         
         reload(true)
     }
@@ -66,16 +66,25 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func reload(direct: Bool) {
-        if direct {
-            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        }
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         let zero: UInt = 0
-        dispatch_async(dispatch_get_global_queue(priority, zero)) {
-            HttpClient.instance.manager.GET(URL_STATUS,
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, zero)) {
+            while true {
+                if mainControllerLoadCompleted {
+                    break
+                }
+
+                println("waiting for login")
+                NSThread.sleepForTimeInterval(0.2)
+            }
+            
+            if direct {
+                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            }
+            
+            HttpClient.newManager().GET(URL_STATUS,
                 parameters: nil,
                 success: {
-                    (operation: AFHTTPRequestOperation!,response: AnyObject!) in
+                    (operation: AFHTTPRequestOperation!, response: AnyObject!) in
                     var items = NSMutableArray()
                     let json = JSONValue(response)["data"]
                     if !json {

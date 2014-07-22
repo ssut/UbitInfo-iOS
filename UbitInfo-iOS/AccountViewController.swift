@@ -32,7 +32,7 @@ class AccountViewController: XLFormViewController {
     func updateFormValues() {
         let sectionCount: Int = self.form.formSections.count
         for index in 0..<sectionCount {
-            var section = self.form.formSectionAtIndex(index)
+            var section = self.form.formSectionAtIndex(UInt(index))
             if !section.isMultivaluedSection {
                 let rowCount: Int = section.formRows.count
                 for rowIndex in 0..<rowCount {
@@ -101,6 +101,7 @@ class AccountViewController: XLFormViewController {
         
         self.form = form
         
+        getUserInfo()
         self.viewWillAppear(false)
     }
     
@@ -175,5 +176,14 @@ class AccountViewController: XLFormViewController {
         self.viewDidLoad()
         self.viewWillAppear(true)
         self.view.setNeedsDisplay()
+    }
+    
+    func getUserInfo() {
+        HttpClient.instance.getUserQuery(QUERY_INFO,
+            queryParam: nil,
+            callback: {
+                (success: Bool, data: Dictionary<String, AnyObject?>?) in
+                println(success)
+            })
     }
 }
