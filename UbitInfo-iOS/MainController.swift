@@ -27,7 +27,7 @@ class MainController: UITabBarController {
         
         // HUD
         self.hud = MBProgressHUD(view: self.view)
-        self.hud.labelText = "Logging in.."
+        self.hud.labelText = localizedString("main.loggingIn")
         self.view.addSubview(hud)
         
         if let user = DataManager.instance.getData("user") as? Dictionary<String, String> {
@@ -46,14 +46,14 @@ class MainController: UITabBarController {
                             
                             self.hud.customView = UIImageView(image: UIImage(named: "Close-Line.png"))
                             self.hud.mode = MBProgressHUDModeCustomView
-                            self.hud.labelText = "Login Failed"
+                            self.hud.labelText = localizedString("main.loginFailed")
                             self.hud.hide(true, afterDelay: 0.7)
                         } else {
                             println("Main: Login Success")
                             
                             self.hud.customView = UIImageView(image: UIImage(named: "Checkmark.png"))
                             self.hud.mode = MBProgressHUDModeCustomView
-                            self.hud.labelText = "Logged In"
+                            self.hud.labelText = localizedString("main.loggedIn")
                             self.hud.hide(true, afterDelay: 0.7)
                         }
                         

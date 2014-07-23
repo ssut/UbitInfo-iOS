@@ -20,15 +20,15 @@ let QUERY_RECENT = ""
 let QUERY_ALL = "all"
 
 let SUCCESS = ""
-let ERR_NETWORK = "Network error"
-let ERR_UNKNOWN = "Unknown error"
-let ERR_FETCH_TOKEN = "Failed to fetch access token"
-let ERR_INVALID_USER = "Username or password is incorrect"
-let ERR_NO_USER = "User not found"
-let ERR_INVALID_PASS = "Password is invalid"
-let ERR_INVALID_DATE_FORMAT = "Invalid date format"
-let ERR_DATE = "Start date is greater than end date"
-let ERR_NO_DATE = "Data not exists"
+let ERR_NETWORK = localizedString("client.ERR_NETWORK")
+let ERR_UNKNOWN = localizedString("client.ERR_UNKNOWN")
+let ERR_FETCH_TOKEN = localizedString("client.ERR_FETCH_TOKEN")
+let ERR_INVALID_USER = localizedString("client.ERR_INVALID_USER")
+let ERR_NO_USER = localizedString("client.ERR_NO_USER")
+let ERR_INVALID_PASS = localizedString("client.ERR_INVALID_PASS")
+let ERR_INVALID_DATE_FORMAT = localizedString("client.ERR_INVALID_DATE_FORMAT")
+let ERR_DATE = localizedString("client.ERR_DATE")
+let ERR_NO_DATE = localizedString("client.ERR_NO_DATE")
 
 var UBITINFO_ACCESS_TOKEN: String = ""
 class HttpClient {
@@ -106,7 +106,7 @@ class HttpClient {
                 callback(false, ERR_FETCH_TOKEN)
                 return Void()
             }
-            
+
             var params = [
                 "authenticity_token": token,
                 "uid": userId,

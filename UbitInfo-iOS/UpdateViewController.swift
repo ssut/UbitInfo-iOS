@@ -31,7 +31,7 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
         if section == 0 {
-            return "Recent Updates"
+            return localizedString("update.title")
         }
         
         return ""
@@ -54,7 +54,10 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let formatter: NSDateFormatter = NSDateFormatter()
         formatter.dateFormat = " HH:mm"
-        let prefix: String = (item.req_result ? "OK" : (item.req_processing ? "DOING" : (item.req_checked ? "FAIL" : "READY" )))
+        let prefix: String = (item.req_result ? localizedString("update.stat_ok") :
+                             (item.req_processing ? localizedString("update.stat_doing") :
+                             (item.req_checked ? localizedString("update.stat_fail") :
+                              localizedString("update.stat_ready"))))
         cell!.textLabel.text = prefix + formatter.stringFromDate(item.created_at)
         cell!.detailTextLabel.text = item.bind_id
         
@@ -121,7 +124,10 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 },
                 failure: {
                     (operation: AFHTTPRequestOperation!,error: NSError!) in
-                    TSMessage.showNotificationInViewController(self, title: "Network error", subtitle: "Couldn't connect to the server. Check your network connection.", type: TSMessageNotificationType.Error)
+                    TSMessage.showNotificationInViewController(self,
+                        title: localizedString("global.error.network.title"),
+                        subtitle: localizedString("global.error.network.content"),
+                        type: TSMessageNotificationType.Error)
                     println(error.description)
                     
                     dispatch_async(dispatch_get_main_queue()) {

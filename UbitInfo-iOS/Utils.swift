@@ -16,3 +16,8 @@ func scaleImage(image: UIImage, newSize: CGSize) -> UIImage {
     
     return newImage
 }
+
+func localizedString(key: String) -> String {
+    let string: String? = NSLocalizedString(key, tableName: nil, comment: "")
+    return string!
+}

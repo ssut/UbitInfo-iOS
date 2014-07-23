@@ -62,7 +62,7 @@ class AccountViewController: XLFormViewController {
     }
     
     func drawGuestView() {
-        var form: XLFormDescriptor = XLFormDescriptor.formDescriptorWithTitle("Login")
+        var form: XLFormDescriptor = XLFormDescriptor.formDescriptorWithTitle(localizedString("account.login"))
         var section: XLFormSectionDescriptor = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         var row: XLFormRowDescriptor
         
@@ -78,17 +78,17 @@ class AccountViewController: XLFormViewController {
         
         self.form = form
         
-        var button: UIBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItemStyle.Plain, target: self, action: "login:")
+        var button: UIBarButtonItem = UIBarButtonItem(title: localizedString("account.login"), style: UIBarButtonItemStyle.Plain, target: self, action: "login:")
         self.navigationItem.rightBarButtonItem = button
         
         self.viewWillAppear(false)
     }
     
     func drawUserView() {
-        var button: UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
+        var button: UIBarButtonItem = UIBarButtonItem(title: localizedString("account.logout"), style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
         self.navigationItem.rightBarButtonItem = button
         
-        var form: XLFormDescriptor = XLFormDescriptor.formDescriptorWithTitle("Account")
+        var form: XLFormDescriptor = XLFormDescriptor.formDescriptorWithTitle(localizedString("account"))
         var section: XLFormSectionDescriptor = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
         var row: XLFormRowDescriptor
         
@@ -134,13 +134,13 @@ class AccountViewController: XLFormViewController {
         
         // check id field
         if !self.values["id"] || (self.values["id"] as AnyObject? as? String) == "" {
-            var message = UIAlertView(title: "Error", message: "Please input Ubitinfo ID", delegate: self, cancelButtonTitle: "OK")
+            var message = UIAlertView(title: localizedString("global.error"), message: localizedString("account.error.inputID"), delegate: self, cancelButtonTitle: "OK")
             message.show()
         }
         
         // check password field
         else if !self.values["password"] || (self.values["password"] as AnyObject? as? String) == "" {
-            var message = UIAlertView(title: "Error", message: "Please input Ubitinfo PW", delegate: self, cancelButtonTitle: "OK")
+            var message = UIAlertView(title: localizedString("global.error"), message: localizedString("account.error.inputPW"), delegate: self, cancelButtonTitle: "OK")
             message.show()
         }
 
@@ -161,7 +161,7 @@ class AccountViewController: XLFormViewController {
                 } else {
                     self.hud.customView = UIImageView(image: UIImage(named: "Checkmark.png"))
                     self.hud.mode = MBProgressHUDModeCustomView
-                    self.hud.labelText = "Login Success"
+                    self.hud.labelText = localizedString("account.loginOK")
                     self.hud.hide(true, afterDelay: 1)
                     
                     self.form = nil
