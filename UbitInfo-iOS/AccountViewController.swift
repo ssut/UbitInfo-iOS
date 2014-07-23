@@ -192,7 +192,7 @@ class AccountViewController: XLFormViewController {
             callback: {
                 (success: Bool, message: String, data: Dictionary<String, AnyObject?>?) in
                 println("getUserInfo", success, message)
-
+                self.refreshControl.endRefreshing()
             })
     }
     

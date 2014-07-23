@@ -59,8 +59,17 @@ class MainController: UITabBarController {
                         
                         mainControllerLoadCompleted = true
                     })
+                } else {
+                    mainControllerLoadCompleted = true
+                    return
                 }
+            } else {
+                mainControllerLoadCompleted = true
+                return
             }
+        } else {
+            mainControllerLoadCompleted = true
+            return
         }
     }
 }
