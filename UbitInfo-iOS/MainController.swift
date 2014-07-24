@@ -41,20 +41,24 @@ class MainController: UITabBarController {
                         return
                     }
                     
-                    SVProgressHUD.showWithStatus(localizedString("main.loggingIn"))
+                    dispatch_async(dispatch_get_main_queue()) {
+                        SVProgressHUD.showWithStatus(localizedString("main.loggingIn"))
+                    }
                     HttpClient.instance.login(userId, userPass: userPass, callback: {
                         (success: Bool, error: String) in
                         if !success {
                             HttpClient.instance.logout()
                             println("Main: Login Failed")
                             
-                            SVProgressHUD.dismiss()
-                            SVProgressHUD.showErrorWithStatus(localizedString("main.loginFailed"))
+                            dispatch_async(dispatch_get_main_queue()) {
+                                SVProgressHUD.showErrorWithStatus(localizedString("main.loginFailed"))
+                            }
                         } else {
                             println("Main: Login Success")
                             
-                            SVProgressHUD.dismiss()
-                            SVProgressHUD.showSuccessWithStatus(localizedString("main.loggedIn"))
+                            dispatch_async(dispatch_get_main_queue()) {
+                                SVProgressHUD.showSuccessWithStatus(localizedString("main.loggedIn"))
+                            }
                         }
                         
                         self.toggleTabBarEnabled(true)
