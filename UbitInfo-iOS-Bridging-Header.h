@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 ssut. All rights reserved.
 //
 
-#import <TSMessage.h>
+//#import <TSMessage.h>
 #import <MBProgressHUD.h>
 #import <AFNetworking.h>
 #import <AsyncImageView.h>
