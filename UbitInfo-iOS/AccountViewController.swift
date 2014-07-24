@@ -11,7 +11,6 @@ import UIKit
 
 class AccountViewController: XLFormViewController {
     var values: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
-    var hud: MBProgressHUD = MBProgressHUD()
     
     @IBOutlet var userSimpleInfoIndicator: UIActivityIndicatorView!
     @IBOutlet var userSimpleInfoUpdated: UILabel!
@@ -21,10 +20,6 @@ class AccountViewController: XLFormViewController {
         self.view.endEditing(true)
         self.tableView.tableHeaderView = nil
         self.refreshControl = nil
-        
-        // HUD
-        self.hud = MBProgressHUD(view: self.view)
-        self.view.addSubview(hud)
         
         if HttpClient.instance.loggedIn {
             self.tableView!.addSubview(refreshControl)
@@ -153,20 +148,13 @@ class AccountViewController: XLFormViewController {
             let userId = self.values["id"] as AnyObject? as? String
             let userPass = self.values["password"] as AnyObject? as? String
             
-            self.hud.mode = MBProgressHUDModeIndeterminate
-            self.hud.labelText = ""
-            self.hud.show(true)
+            SVProgressHUD.show()
             HttpClient.instance.login(userId!, userPass: userPass!, callback: {
                 (success: Bool, message: String) in
                 if !success {
-                    self.hud.mode = MBProgressHUDModeText
-                    self.hud.labelText = message
-                    self.hud.hide(true, afterDelay: 1)
+                    SVProgressHUD.showErrorWithStatus(message)
                 } else {
-                    self.hud.customView = UIImageView(image: UIImage(named: "Checkmark.png"))
-                    self.hud.mode = MBProgressHUDModeCustomView
-                    self.hud.labelText = localizedString("account.loginOK")
-                    self.hud.hide(true, afterDelay: 1)
+                    SVProgressHUD.showSuccessWithStatus(localizedString("account.loginOK"))
                     
                     self.form = nil
                     self.reloadFormRow(nil)
@@ -190,14 +178,29 @@ class AccountViewController: XLFormViewController {
     }
     
     func getUserInfo(direct: Bool) {
+        self.refreshControl.beginRefreshing()
         HttpClient.instance.getUserQuery(QUERY_INFO,
             queryParam: nil,
             callback: {
                 (success: Bool, message: String, data: Dictionary<String, AnyObject?>?) in
-                println("getUserInfo", success, message)
+                if !success {
+                    SCLAlertView().showTitle(self,
+                        title: localizedString("global.error"),
+                        subTitle: message,
+                        duration: 0,
+                        completeText: "OK",
+                        style: .Error)
+                    return
+                }
+                
+                self.drawUserInfo(data)
                 self.refreshControl.endRefreshing()
             }
         )
+    }
+    
+    func drawUserInfo(data: Dictionary<String, AnyObject?>?) {
+        
     }
     
     func getUserInfoWithControl(sender: AnyObject) {

@@ -64,7 +64,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <outlet property="tabbar" destination="W28-zg-YXA" id="yg0-d2-KnK"/>
                         <segue destination="CD1-bi-t0Y" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="6de-IR-2uL" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="Btd-Xm-fKw" kind="relationship" relationship="viewControllers" id="XLE-m9-T7g"/>
@@ -79,7 +78,7 @@
         <scene sceneID="gt9-57-VVn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CD1-bi-t0Y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qUT-0L-m2W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

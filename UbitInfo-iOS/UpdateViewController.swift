@@ -78,17 +78,17 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
 
                 println("waiting for login")
-                NSThread.sleepForTimeInterval(0.2)
+                NSThread.sleepForTimeInterval(1)
             }
             
             if direct {
                 dispatch_async(dispatch_get_main_queue()) {
-                    MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                    SVProgressHUD.show()
                     return
                 }
             }
             
-            HttpClient.newManager().GET(URL_STATUS,
+           HttpClient.newManager().GET(URL_STATUS,
                 parameters: nil,
                 success: {
                     (operation: AFHTTPRequestOperation!, response: AnyObject!) in
@@ -112,7 +112,7 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        MBProgressHUD.hideHUDForView(self.view, animated: true)
+                        SVProgressHUD.dismiss()
                         self.refreshControl.endRefreshing()
                         self.dataArray.removeAllObjects()
                         if json {
@@ -126,7 +126,7 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 failure: {
                     (operation: AFHTTPRequestOperation!,error: NSError!) in
                     dispatch_async(dispatch_get_main_queue()) {
-                        MBProgressHUD.hideHUDForView(self.view, animated: true)
+                        SVProgressHUD.dismiss()
                         self.refreshControl.endRefreshing()
                         SCLAlertView().showTitle(self,
                             title: localizedString("global.error.network.title"),
