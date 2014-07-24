@@ -13,19 +13,18 @@ class AccountViewController: XLFormViewController {
     var values: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
     var hud: MBProgressHUD = MBProgressHUD()
     
+    @IBOutlet var userSimpleInfoIndicator: UIActivityIndicatorView!
+    @IBOutlet var userSimpleInfoUpdated: UILabel!
+    @IBOutlet var userSimpleInfo: UIView!
     override func viewDidLoad()  {
         super.viewDidLoad()
-        
         self.view.endEditing(true)
+        self.tableView.tableHeaderView = nil
+        self.refreshControl = nil
         
         // HUD
         self.hud = MBProgressHUD(view: self.view)
         self.view.addSubview(hud)
-        
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "")
-        self.refreshControl.addTarget(self, action: "getUserInfoWithControl:", forControlEvents: UIControlEvents.ValueChanged)
-        
         
         if HttpClient.instance.loggedIn {
             self.tableView!.addSubview(refreshControl)
@@ -97,11 +96,14 @@ class AccountViewController: XLFormViewController {
         row = XLFormRowDescriptor.formRowDescriptorWithTag("pfImage", rowType: "textView", title: "")
         section.addFormRow(row)
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "")
+        self.refreshControl.addTarget(self, action: "getUserInfoWithControl:", forControlEvents: UIControlEvents.ValueChanged)
+        
         var imageView = UIImageView()
         imageView.imageURL = NSURL(string: "https://ubit.info/@images/jubility/10_0")
         imageView.frame = CGRectMake(0, 0, 80, 80)
         imageView.contentMode = UIViewContentMode.Center
-        self.tableView.tableHeaderView = imageView
         
         // watch imageView.image -- KVO has a problem at removeObserver
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
@@ -126,6 +128,8 @@ class AccountViewController: XLFormViewController {
         self.form = form
         
         getUserInfo(true)
+        self.tableView.tableHeaderView = self.userSimpleInfo
+        self.tableView.setNeedsDisplay()
         self.viewWillAppear(false)
     }
     
@@ -177,7 +181,6 @@ class AccountViewController: XLFormViewController {
     
     func logout(sender: AnyObject) {
         HttpClient.instance.logout()
-        self.tableView.tableHeaderView = nil
         self.form = nil
         self.reloadFormRow(nil)
         self.tableView.reloadData()
@@ -193,7 +196,8 @@ class AccountViewController: XLFormViewController {
                 (success: Bool, message: String, data: Dictionary<String, AnyObject?>?) in
                 println("getUserInfo", success, message)
                 self.refreshControl.endRefreshing()
-            })
+            }
+        )
     }
     
     func getUserInfoWithControl(sender: AnyObject) {

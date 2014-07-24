@@ -70,7 +70,8 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func reload(direct: Bool) {
         let zero: UInt = 0
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, zero)) {
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             while true {
                 if mainControllerLoadCompleted {
                     break
@@ -94,7 +95,7 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     var items = NSMutableArray()
                     let json = JSONValue(response)["data"]
                     if !json {
-                        TSMessage.showNotificationInViewController(self, title: "Data parse error", subtitle: "Couldn't parse retrieved data. data is malformed?", type: TSMessageNotificationType.Error)
+                        SCLAlertView().showError(self, title: "Parse Error", subTitle: "Couldn't parser retrieved data.")
                     } else if let elements = json["updates"].array {
                         for item:JSONValue in elements {
                             var status = JSONStatus(
@@ -124,15 +125,15 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 },
                 failure: {
                     (operation: AFHTTPRequestOperation!,error: NSError!) in
-                    TSMessage.showNotificationInViewController(self,
-                        title: localizedString("global.error.network.title"),
-                        subtitle: localizedString("global.error.network.content"),
-                        type: TSMessageNotificationType.Error)
-                    println(error.description)
-                    
                     dispatch_async(dispatch_get_main_queue()) {
                         MBProgressHUD.hideHUDForView(self.view, animated: true)
-                        
+                        self.refreshControl.endRefreshing()
+                        SCLAlertView().showTitle(self,
+                            title: localizedString("global.error.network.title"),
+                            subTitle: localizedString("global.error.network.content"),
+                            duration: 0,
+                            completeText: "Dismiss",
+                            style: .Error)
                         return
                     }
             })
