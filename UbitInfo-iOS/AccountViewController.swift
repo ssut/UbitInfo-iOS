@@ -96,7 +96,8 @@ class AccountViewController: XLFormViewController {
         self.refreshControl.addTarget(self, action: "getUserInfoWithControl:", forControlEvents: UIControlEvents.ValueChanged)
         
         var imageView = UIImageView()
-        imageView.imageURL = NSURL(string: "https://ubit.info/@images/jubility/10_0")
+//        imageView.image
+//        imageView.imageURL = NSURL(string: "https://ubit.info/@images/jubility/10_0")
         imageView.frame = CGRectMake(0, 0, 80, 80)
         imageView.contentMode = UIViewContentMode.Center
         

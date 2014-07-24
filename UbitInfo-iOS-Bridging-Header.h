@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 ssut. All rights reserved.
 //
 
-//#import <TSMessage.h>
 #import <SVProgressHUD.h>
 #import <AFNetworking.h>
 #import <AsyncImageView.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 // XLForm
 #import "XL/XLForm.h"
