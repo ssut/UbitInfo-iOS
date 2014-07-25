@@ -46,18 +46,18 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var cell:UITableViewCell? =
         tableView?.dequeueReusableCellWithIdentifier(reuseIdentifier) as? UITableViewCell
         if !cell {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value2,
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
                 reuseIdentifier: reuseIdentifier)
         }
         var section: NSArray = dataArray[indexPath.section] as NSArray
         var item = section[indexPath.row] as JSONStatus
         
-        let prefix: String = (item.req_result ? localizedString("update.stat_ok") :
+        let suffix: String = (item.req_result ? localizedString("update.stat_ok") :
                              (item.req_processing ? localizedString("update.stat_doing") :
                              (item.req_checked ? localizedString("update.stat_fail") :
                               localizedString("update.stat_ready"))))
-        cell!.textLabel.text = prefix + item.created_at.toString(" HH:mm")
-        cell!.detailTextLabel.text = item.bind_id
+        cell!.detailTextLabel.text = item.created_at.toString("HH:mm ") + suffix
+        cell!.textLabel.text = item.bind_id
         
         return cell
     }
