@@ -8,7 +8,6 @@
 
 #import <SVProgressHUD.h>
 #import <AFNetworking.h>
-#import <AsyncImageView.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
 // XLForm
@@ -16,3 +15,6 @@
 
 // FormatterKit
 #import <TTTTimeIntervalFormatter.h>
+
+// Pixate Freestyle
+#import <PixateFreestyle.h>

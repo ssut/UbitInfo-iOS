@@ -408,6 +408,7 @@
 		8949DF63197CFA4100824109 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8949DF62197CFA4100824109 /* DataManager.swift */; };
 		8949DF6B197D6BC900824109 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8949DF6A197D6BC900824109 /* Utils.swift */; };
 		89659F981980D2CA00A5BC74 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89659F971980D2CA00A5BC74 /* SCLAlertView.swift */; };
+		89659FA71981773D00A5BC74 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 89659FA61981773D00A5BC74 /* default.css */; };
 		896FCFBE197AB2EC000DB9C7 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896FCFBD197AB2EC000DB9C7 /* HttpClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -433,13 +434,6 @@
 			remoteGlobalIDString = 7B7A5AB1203B4E8B9B8473E7;
 			remoteInfo = "Pods-UbitInfo-iOS-FormatterKit";
 		};
-		8900D0E5197BCF2E0032753D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8900D0D4197BCF2E0032753D /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8891BD5B6AB4022B888FECC;
-			remoteInfo = "Pods-UbitInfo-iOS-MBProgressHUD";
-		};
 		892ABEF51979939800D0B6AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 892ABED81979939800D0B6AE /* Project object */;
@@ -447,12 +441,26 @@
 			remoteGlobalIDString = 892ABEDF1979939800D0B6AE;
 			remoteInfo = "UbitInfo-iOS";
 		};
-		8949DF6D197D6BC900824109 /* PBXContainerItemProxy */ = {
+		89659FA21981744D00A5BC74 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8900D0D4197BCF2E0032753D /* Pods.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 6BF643E4059940E482851172;
-			remoteInfo = "Pods-UbitInfo-iOS-AsyncImageView";
+			remoteGlobalIDString = 856A8314116440AC8DF3EFC9;
+			remoteInfo = "Pods-UbitInfo-iOS-SDWebImage";
+		};
+		89659FA41981744D00A5BC74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8900D0D4197BCF2E0032753D /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FD3429BE427C48E1804E7369;
+			remoteInfo = "Pods-UbitInfo-iOS-SVProgressHUD";
+		};
+		89659FA91981773D00A5BC74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8900D0D4197BCF2E0032753D /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FD36A5E658B747B488869A81;
+			remoteInfo = "Pods-UbitInfo-iOS-PixateFreestyle";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -900,6 +908,7 @@
 		8949DF62197CFA4100824109 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		8949DF6A197D6BC900824109 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		89659F971980D2CA00A5BC74 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
+		89659FA61981773D00A5BC74 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = default.css; path = "../../../Documents/PixateFreestyle/Themes/pixate-blue/css/default.css"; sourceTree = "<group>"; };
 		896FCFB6197A78C1000DB9C7 /* UbitInfo-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UbitInfo-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		896FCFBD197AB2EC000DB9C7 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		CEB6F27B398B4DF5995D79F7 /* Pods-UbitInfo-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UbitInfo-iOS.xcconfig"; path = "Pods/Pods-UbitInfo-iOS.xcconfig"; sourceTree = "<group>"; };
@@ -929,9 +938,10 @@
 			children = (
 				8900D0DE197BCF2E0032753D /* libPods-UbitInfo-iOS.a */,
 				8900D0E0197BCF2E0032753D /* libPods-UbitInfo-iOS-AFNetworking.a */,
-				8949DF6E197D6BC900824109 /* libPods-UbitInfo-iOS-AsyncImageView.a */,
 				8900D0E2197BCF2E0032753D /* libPods-UbitInfo-iOS-FormatterKit.a */,
-				8900D0E6197BCF2E0032753D /* libPods-UbitInfo-iOS-MBProgressHUD.a */,
+				89659FAA1981773D00A5BC74 /* libPods-UbitInfo-iOS-PixateFreestyle.a */,
+				89659FA31981744D00A5BC74 /* libPods-UbitInfo-iOS-SDWebImage.a */,
+				89659FA51981744D00A5BC74 /* libPods-UbitInfo-iOS-SVProgressHUD.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1229,6 +1239,7 @@
 		892ABEE21979939800D0B6AE /* UbitInfo-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				89659FA61981773D00A5BC74 /* default.css */,
 				89659F971980D2CA00A5BC74 /* SCLAlertView.swift */,
 				8900D0E9197BDCBA0032753D /* CupertinoLine */,
 				89307F60197B94EE00C3997C /* SwiftyJSON.swift */,
@@ -1602,18 +1613,25 @@
 			remoteRef = 8900D0E1197BCF2E0032753D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8900D0E6197BCF2E0032753D /* libPods-UbitInfo-iOS-MBProgressHUD.a */ = {
+		89659FA31981744D00A5BC74 /* libPods-UbitInfo-iOS-SDWebImage.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libPods-UbitInfo-iOS-MBProgressHUD.a";
-			remoteRef = 8900D0E5197BCF2E0032753D /* PBXContainerItemProxy */;
+			path = "libPods-UbitInfo-iOS-SDWebImage.a";
+			remoteRef = 89659FA21981744D00A5BC74 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8949DF6E197D6BC900824109 /* libPods-UbitInfo-iOS-AsyncImageView.a */ = {
+		89659FA51981744D00A5BC74 /* libPods-UbitInfo-iOS-SVProgressHUD.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libPods-UbitInfo-iOS-AsyncImageView.a";
-			remoteRef = 8949DF6D197D6BC900824109 /* PBXContainerItemProxy */;
+			path = "libPods-UbitInfo-iOS-SVProgressHUD.a";
+			remoteRef = 89659FA41981744D00A5BC74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		89659FAA1981773D00A5BC74 /* libPods-UbitInfo-iOS-PixateFreestyle.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-UbitInfo-iOS-PixateFreestyle.a";
+			remoteRef = 89659FA91981773D00A5BC74 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1802,6 +1820,7 @@
 				8900D21E197BDCBB0032753D /* Close-Filled.png in Resources */,
 				8949643C197CF19E009984EB /* Folder@2x.png in Resources */,
 				8900D24A197BDCBB0032753D /* Forward-Line.png in Resources */,
+				89659FA71981773D00A5BC74 /* default.css in Resources */,
 				892ABEED1979939800D0B6AE /* Main.storyboard in Resources */,
 				89496474197CF19E009984EB /* Wallet@2x.png in Resources */,
 				8900D205197BDCBB0032753D /* Backward-Line@2x.png in Resources */,
@@ -2211,6 +2230,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/ssut/Documents/PixateFreestyle,
 				);
 				INFOPLIST_FILE = "UbitInfo-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -2233,6 +2253,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/ssut/Documents/PixateFreestyle,
 				);
 				INFOPLIST_FILE = "UbitInfo-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

@@ -1,8 +1,44 @@
-/* 
-  Localizable.strings
-  UbitInfo-iOS
+/*
+ Localizable.strings
+ UbitInfo-iOS
+ 
+ Created by ssut on 7/23/14.
+ Copyright (c) 2014 ssut. All rights reserved.
+ */
 
-  Created by ssut on 7/23/14.
-  Copyright (c) 2014 ssut. All rights reserved.
-*/
-"asdf" = "비비비";
+// Global
+"global.error" = "Error";
+"global.error.network.title" = "Network Error";
+"global.error.network.content" = "Couldn't connect to the server. Check your network connection.";
+
+// MainController.swift
+"main.loggingIn" = "Logging in..";
+"main.loginFailed" = "Login Failed";
+"main.loggedIn" = "Logged In";
+
+// UpdateViewController.swift
+"update.title" = "Recent updates";
+"update.stat_ok" = "OK";
+"update.stat_doing" = "DOING";
+"update.stat_fail" = "FAIL";
+"update.stat_ready" = "READY";
+
+// HttpClient.swift
+"client.ERR_NETWORK" = "Network Error";
+"client.ERR_UNKNOWN" = "Unknown Error";
+"client.ERR_FETCH_TOKEN" = "Failed to fetch access token";
+"client.ERR_INVALID_USER" = "Invalid Username/Password";
+"client.ERR_NO_USER" = "User not found";
+"client.ERR_INVALID_PASS" = "Invalid Password";
+"client.ERR_INVALID_DATE_FORMAT" = "Invalid date format";
+"client.ERR_DATE" = "Start date is greather than end date";
+"client.ERR_NO_DATE" = "Data not exists";
+
+// AccountViewController.swift
+"account" = "Account";
+"account.login" = "Login";
+"account.logout" = "Logout";
+"account.error.inputID" = "Please input Ubitinfo ID";
+"account.error.inputPW" = "Please input Ubitinfo PW";
+"account.loginOK" = "Login Success";
+

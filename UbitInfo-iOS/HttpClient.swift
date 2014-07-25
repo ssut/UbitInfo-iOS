@@ -209,7 +209,7 @@ class HttpClient {
         )
     }
     
-    func getUserQuery(query: String, queryParam: Array<String>?, callback: (Bool, String, Dictionary<String, AnyObject?>?) -> Void) {
+    func getUserQuery(query: String, queryParam: Array<String>?, callback: (Bool, String, Dictionary<String, JSONValue?>?) -> Void) {
         HttpClient.instance.checkLoggedIn({
             (loggedIn: Bool, userId: String) in
             if !loggedIn {
@@ -250,44 +250,49 @@ class HttpClient {
                         
                         var userInfo: JSONUserInfo = JSONUserInfo(code: code, data: nil)
                         if let data = json["data"].object {
-                            var infoData: Dictionary<String, AnyObject?> = Dictionary<String, AnyObject?>()
+                            var infoData: Dictionary<String, JSONValue?> = Dictionary<String, JSONValue?>()
                             
                             infoData["data"] = nil
-                            if let diff = data["diff"]?.object {
-                                infoData["diff"] = [
-                                    "exc_diff": diff["exc_diff"]?.integer as Int,
-                                    "fc_diff": diff["fc_diff"]?.integer as Int,
-                                    "jubility10": diff["jubility10"]?.double as Double,
-                                    "jubility9": diff["jubility9"]?.double as Double,
-                                    "rank_diff": diff["rank_diff"]?.integer as Int,
-                                    "tbs_diff": diff["tbs_diff"]?.integer as Int,
-                                    "tune_diff": diff["tune_diff"]?.integer as Int
-                                ]
+                            infoData["diff"] = nil
+                            infoData["info"] = nil
+
+                            if let diff = data["diff"] {
+                                infoData["diff"] = diff
+//                                infoData["diff"] = [
+//                                    "exc_diff": diff["exc_diff"]?.integer as Int,
+//                                    "fc_diff": diff["fc_diff"]?.integer as Int,
+//                                    "jubility10": diff["jubility10"]?.double as Double,
+//                                    "jubility9": diff["jubility9"]?.double as Double,
+//                                    "rank_diff": diff["rank_diff"]?.integer as Int,
+//                                    "tbs_diff": diff["tbs_diff"]?.integer as Int,
+//                                    "tune_diff": diff["tune_diff"]?.integer as Int
+//                                ]
                             }
                             
-                            if let info = data["info"]?.object {
-                                infoData["info"] = [
-                                    "date": info["date"]?.string as String,
-                                    "player_name": info["player_name"]?.string as String,
-                                    "player_title": info["player_title"]?.string as String,
-                                    "player_marker": info["player_marker"]?.integer as Int,
-                                    "player_background": info["player_background"]?.integer as Int,
-                                    "player_team": info["player_team"]?.string as String,
-                                    "play_tune": info["play_tune"]?.integer as Int,
-                                    "play_fc": info["play_fc"]?.integer as Int,
-                                    "play_exc": info["play_exc"]?.integer as Int,
-                                    "play_tbs": info["play_tbs"]?.integer as Int,
-                                    "play_tbs_rank": info["play_tbs_rank"]?.integer as Int,
-                                    "jubility": info["jubility"]?.double as Double,
-                                    "jubility_change": info["jubility_change"]?.double as Double,
-                                    "play_date": info["play_date"]?.string? as String,
-                                    "play_country": info["play_country"]?.string as String,
-                                    "play_place": info["play_place"]?.string as String,
-                                    "jubility_image": info["jubility_image"]?.string as String,
-                                    "marker_image": info["marker_image"]?.string as String,
-                                    "background_image": info["background_image"]?.string as String,
-                                    "update_doing": info["update_doing"]?.bool as Bool
-                                ]
+                            if let info = data["info"] {
+                                infoData["info"] = info
+//                                infoData["info"] = [
+//                                    "date": info["date"]?.string as String,
+//                                    "player_name": info["player_name"]?.string as String,
+//                                    "player_title": info["player_title"]?.string as String,
+//                                    "player_marker": info["player_marker"]?.integer as Int,
+//                                    "player_background": info["player_background"]?.integer as Int,
+//                                    "player_team": info["player_team"]?.string as String,
+//                                    "play_tune": info["play_tune"]?.integer as Int,
+//                                    "play_fc": info["play_fc"]?.integer as Int,
+//                                    "play_exc": info["play_exc"]?.integer as Int,
+//                                    "play_tbs": info["play_tbs"]?.integer as Int,
+//                                    "play_tbs_rank": info["play_tbs_rank"]?.integer as Int,
+//                                    "jubility": info["jubility"]?.double as Double,
+//                                    "jubility_change": info["jubility_change"]?.double as Double,
+//                                    "play_date": info["play_date"]?.string? as String,
+//                                    "play_country": info["play_country"]?.string as String,
+//                                    "play_place": info["play_place"]?.string as String,
+//                                    "jubility_image": info["jubility_image"]?.string as String,
+//                                    "marker_image": info["marker_image"]?.string as String,
+//                                    "background_image": info["background_image"]?.string as String,
+//                                    "update_doing": info["update_doing"]?.bool as Bool
+//                                ]
                             }
                             
                             callback(true, SUCCESS, infoData)

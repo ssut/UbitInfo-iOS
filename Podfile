@@ -8,8 +8,8 @@ target "UbitInfo-iOS" do
   pod "SVProgressHUD"
   pod "AFNetworking", "~> 2.0"
   pod "FormatterKit"
-  pod "AsyncImageView"
   pod "SDWebImage", "~>3.6"
+  pod "PixateFreestyle"
 end
 
 target "UbitInfo-iOSTests" do

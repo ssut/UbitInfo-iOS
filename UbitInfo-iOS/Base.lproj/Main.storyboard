@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
@@ -136,7 +135,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="USW-vQ-q1M">
-                            <rect key="frame" x="0.0" y="64" width="320" height="108"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="280"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vod-Bf-ctx">
@@ -153,8 +152,12 @@
                                     </attributedString>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" id="RoJ-sz-8cE">
-                                    <rect key="frame" x="150" y="44" width="20" height="20"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="nfB-wD-e4J">
+                                    <rect key="frame" x="90" y="36" width="140" height="140"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="RoJ-sz-8cE">
+                                    <rect key="frame" x="150" y="96" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </activityIndicatorView>
                             </subviews>
@@ -175,7 +178,8 @@
                     <navigationItem key="navigationItem" title="Account" id="DsN-2Y-MSF"/>
                     <connections>
                         <outlet property="userSimpleInfo" destination="USW-vQ-q1M" id="s5Y-pw-hs0"/>
-                        <outlet property="userSimpleInfoIndicator" destination="RoJ-sz-8cE" id="BIK-WO-D4R"/>
+                        <outlet property="userSimpleInfoJubilityImage" destination="nfB-wD-e4J" id="8a1-6L-0X8"/>
+                        <outlet property="userSimpleInfoJubilityIndicator" destination="RoJ-sz-8cE" id="1R6-pa-cPm"/>
                         <outlet property="userSimpleInfoUpdated" destination="vod-Bf-ctx" id="pFh-5c-yu6"/>
                     </connections>
                 </tableViewController>

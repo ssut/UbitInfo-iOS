@@ -12,7 +12,8 @@ import UIKit
 class AccountViewController: XLFormViewController {
     var values: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
     
-    @IBOutlet var userSimpleInfoIndicator: UIActivityIndicatorView!
+    @IBOutlet var userSimpleInfoJubilityImage: UIImageView!
+    @IBOutlet var userSimpleInfoJubilityIndicator: UIActivityIndicatorView!
     @IBOutlet var userSimpleInfoUpdated: UILabel!
     @IBOutlet var userSimpleInfo: UIView!
     override func viewDidLoad()  {
@@ -95,32 +96,6 @@ class AccountViewController: XLFormViewController {
         self.refreshControl.attributedTitle = NSAttributedString(string: "")
         self.refreshControl.addTarget(self, action: "getUserInfoWithControl:", forControlEvents: UIControlEvents.ValueChanged)
         
-        var imageView = UIImageView()
-//        imageView.image
-//        imageView.imageURL = NSURL(string: "https://ubit.info/@images/jubility/10_0")
-        imageView.frame = CGRectMake(0, 0, 80, 80)
-        imageView.contentMode = UIViewContentMode.Center
-        
-        // watch imageView.image -- KVO has a problem at removeObserver
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            while true {
-                if imageView != nil {
-                    if imageView.image != nil {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            imageView.image = scaleImage(imageView.image, CGSizeMake(80, 80))
-                            imageView.setNeedsDisplay()
-                        }
-                        break
-                    }
-                } else {
-                    break
-                }
-                
-                NSThread.sleepForTimeInterval(0.1)
-            }
-            return
-        }
-        
         self.form = form
         
         getUserInfo(true)
@@ -159,8 +134,8 @@ class AccountViewController: XLFormViewController {
                     
                     self.form = nil
                     self.reloadFormRow(nil)
-                    self.tableView.reloadData()
                     self.viewDidLoad()
+                    self.tableView.reloadData()
                     self.viewWillAppear(true)
                     self.view.setNeedsDisplay()
                 }
@@ -172,18 +147,19 @@ class AccountViewController: XLFormViewController {
         HttpClient.instance.logout()
         self.form = nil
         self.reloadFormRow(nil)
-        self.tableView.reloadData()
         self.viewDidLoad()
+        self.tableView.reloadData()
         self.viewWillAppear(true)
         self.view.setNeedsDisplay()
     }
     
     func getUserInfo(direct: Bool) {
+        userSimpleInfoJubilityIndicator.startAnimating()
         self.refreshControl.beginRefreshing()
         HttpClient.instance.getUserQuery(QUERY_INFO,
             queryParam: nil,
             callback: {
-                (success: Bool, message: String, data: Dictionary<String, AnyObject?>?) in
+                (success: Bool, message: String, data: Dictionary<String, JSONValue?>?) in
                 if !success {
                     SCLAlertView().showTitle(self,
                         title: localizedString("global.error"),
@@ -194,14 +170,30 @@ class AccountViewController: XLFormViewController {
                     return
                 }
                 
-                self.drawUserInfo(data)
+                self.drawUserInfo(data as Dictionary<String, JSONValue?>)
                 self.refreshControl.endRefreshing()
             }
         )
     }
     
-    func drawUserInfo(data: Dictionary<String, AnyObject?>?) {
+    func drawUserInfo(data: Dictionary<String, JSONValue?>) {
         
+        userSimpleInfoUpdated.text = "Updated at " + NSDate().toString("yyyy-MM-dd HH:mm:ss")
+        
+        let jubilityImagePath = data["info"]!!["jubility_image"].string as String
+        let jubilityImageURL: NSURL = buildURL(jubilityImagePath).nsurl
+
+        SDWebImageDownloader.sharedDownloader().downloadImageWithURL(
+            jubilityImageURL,
+            options: nil,
+            progress: nil,
+            completed: {
+                (image: UIImage!, data: NSData!, error: NSError!, finished: Bool) in
+                if image != nil && finished == true {
+                        self.userSimpleInfoJubilityImage.image = image
+                        self.userSimpleInfoJubilityIndicator.stopAnimating()
+                }
+            })
     }
     
     func getUserInfoWithControl(sender: AnyObject) {
