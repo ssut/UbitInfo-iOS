@@ -21,3 +21,18 @@ func localizedString(key: String) -> String {
     let string: String? = NSLocalizedString(key, tableName: nil, comment: "")
     return string!
 }
+
+func buildURL(path: String) -> (string: String, nsurl: NSURL) {
+    let url: String = URL_PREFIX + path
+    
+    return (url, NSURL(string: url))
+}
+
+extension NSDate {
+    func toString(format: String) -> String {
+        let formatter: NSDateFormatter = NSDateFormatter()
+        formatter.dateFormat = format
+        
+        return formatter.stringFromDate(self)
+    }
+}

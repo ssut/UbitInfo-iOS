@@ -52,13 +52,11 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var section: NSArray = dataArray[indexPath.section] as NSArray
         var item = section[indexPath.row] as JSONStatus
         
-        let formatter: NSDateFormatter = NSDateFormatter()
-        formatter.dateFormat = " HH:mm"
         let prefix: String = (item.req_result ? localizedString("update.stat_ok") :
                              (item.req_processing ? localizedString("update.stat_doing") :
                              (item.req_checked ? localizedString("update.stat_fail") :
                               localizedString("update.stat_ready"))))
-        cell!.textLabel.text = prefix + formatter.stringFromDate(item.created_at)
+        cell!.textLabel.text = prefix + item.created_at.toString(" HH:mm")
         cell!.detailTextLabel.text = item.bind_id
         
         return cell
