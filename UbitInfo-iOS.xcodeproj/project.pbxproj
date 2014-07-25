@@ -408,8 +408,8 @@
 		8949DF63197CFA4100824109 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8949DF62197CFA4100824109 /* DataManager.swift */; };
 		8949DF6B197D6BC900824109 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8949DF6A197D6BC900824109 /* Utils.swift */; };
 		89659F981980D2CA00A5BC74 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89659F971980D2CA00A5BC74 /* SCLAlertView.swift */; };
-		89659FA71981773D00A5BC74 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 89659FA61981773D00A5BC74 /* default.css */; };
 		896FCFBE197AB2EC000DB9C7 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896FCFBD197AB2EC000DB9C7 /* HttpClient.swift */; };
+		89A0FCA41982B5C60024901A /* default.scss in Resources */ = {isa = PBXBuildFile; fileRef = 89A0FCA31982B5C60024901A /* default.scss */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -908,9 +908,9 @@
 		8949DF62197CFA4100824109 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		8949DF6A197D6BC900824109 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		89659F971980D2CA00A5BC74 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
-		89659FA61981773D00A5BC74 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = default.css; path = "../../../Documents/PixateFreestyle/Themes/pixate-blue/css/default.css"; sourceTree = "<group>"; };
 		896FCFB6197A78C1000DB9C7 /* UbitInfo-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UbitInfo-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		896FCFBD197AB2EC000DB9C7 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		89A0FCA31982B5C60024901A /* default.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default.scss; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.css; };
 		CEB6F27B398B4DF5995D79F7 /* Pods-UbitInfo-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UbitInfo-iOS.xcconfig"; path = "Pods/Pods-UbitInfo-iOS.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1239,7 +1239,7 @@
 		892ABEE21979939800D0B6AE /* UbitInfo-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				89659FA61981773D00A5BC74 /* default.css */,
+				89A0FCA31982B5C60024901A /* default.scss */,
 				89659F971980D2CA00A5BC74 /* SCLAlertView.swift */,
 				8900D0E9197BDCBA0032753D /* CupertinoLine */,
 				89307F60197B94EE00C3997C /* SwiftyJSON.swift */,
@@ -1519,6 +1519,7 @@
 				892ABEDD1979939800D0B6AE /* Frameworks */,
 				892ABEDE1979939800D0B6AE /* Resources */,
 				F4D617892AD04A7AA901F25E /* Copy Pods Resources */,
+				89A0FCA21982B2180024901A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1809,6 +1810,7 @@
 				8900D24C197BDCBB0032753D /* Glasses-Filled.png in Resources */,
 				8900D280197BDCBB0032753D /* Map-Line.png in Resources */,
 				8900D290197BDCBB0032753D /* Music-Line.png in Resources */,
+				89A0FCA41982B5C60024901A /* default.scss in Resources */,
 				8900D2A5197BDCBB0032753D /* Place-Filled@2x.png in Resources */,
 				89496411197CF19E009984EB /* Add-to-Cloud.png in Resources */,
 				8900D271197BDCBB0032753D /* List@2x.png in Resources */,
@@ -1820,7 +1822,6 @@
 				8900D21E197BDCBB0032753D /* Close-Filled.png in Resources */,
 				8949643C197CF19E009984EB /* Folder@2x.png in Resources */,
 				8900D24A197BDCBB0032753D /* Forward-Line.png in Resources */,
-				89659FA71981773D00A5BC74 /* default.css in Resources */,
 				892ABEED1979939800D0B6AE /* Main.storyboard in Resources */,
 				89496474197CF19E009984EB /* Wallet@2x.png in Resources */,
 				8900D205197BDCBB0032753D /* Backward-Line@2x.png in Resources */,
@@ -2018,6 +2019,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		89A0FCA21982B2180024901A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/Users/${USER}/.rbenv/shims/sass ${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/default.scss ${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/default.css";
+		};
 		B6C2E1FCBB6A456F87E27858 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
