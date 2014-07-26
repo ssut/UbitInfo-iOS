@@ -410,6 +410,10 @@
 		89659F981980D2CA00A5BC74 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89659F971980D2CA00A5BC74 /* SCLAlertView.swift */; };
 		896FCFBE197AB2EC000DB9C7 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896FCFBD197AB2EC000DB9C7 /* HttpClient.swift */; };
 		89A0FCA41982B5C60024901A /* default.scss in Resources */ = {isa = PBXBuildFile; fileRef = 89A0FCA31982B5C60024901A /* default.scss */; };
+		89A0FCB7198417160024901A /* Saucer-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89A0FCB3198416F20024901A /* Saucer-Bold.ttf */; };
+		89A0FCB8198417160024901A /* Saucer-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89A0FCB4198416F20024901A /* Saucer-Light.ttf */; };
+		89A0FCB9198417160024901A /* Saucer-Mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89A0FCB5198416F20024901A /* Saucer-Mono.ttf */; };
+		89A0FCBA198417160024901A /* Saucer-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89A0FCB6198416F20024901A /* Saucer-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -911,6 +915,10 @@
 		896FCFB6197A78C1000DB9C7 /* UbitInfo-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UbitInfo-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		896FCFBD197AB2EC000DB9C7 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		89A0FCA31982B5C60024901A /* default.scss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default.scss; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.css; };
+		89A0FCB3198416F20024901A /* Saucer-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saucer-Bold.ttf"; sourceTree = "<group>"; };
+		89A0FCB4198416F20024901A /* Saucer-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saucer-Light.ttf"; sourceTree = "<group>"; };
+		89A0FCB5198416F20024901A /* Saucer-Mono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saucer-Mono.ttf"; sourceTree = "<group>"; };
+		89A0FCB6198416F20024901A /* Saucer-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saucer-Regular.ttf"; sourceTree = "<group>"; };
 		CEB6F27B398B4DF5995D79F7 /* Pods-UbitInfo-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UbitInfo-iOS.xcconfig"; path = "Pods/Pods-UbitInfo-iOS.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1214,7 +1222,6 @@
 		892ABED71979939800D0B6AE = {
 			isa = PBXGroup;
 			children = (
-				894963AA197CF19E009984EB /* PP */,
 				89450804197CABDA006765FE /* XL */,
 				89307F65197B9AED00C3997C /* L.playground */,
 				896FCFB6197A78C1000DB9C7 /* UbitInfo-iOS-Bridging-Header.h */,
@@ -1239,6 +1246,8 @@
 		892ABEE21979939800D0B6AE /* UbitInfo-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				89A0FCA91983AB8C0024901A /* Fonts */,
+				894963AA197CF19E009984EB /* PP */,
 				89A0FCA31982B5C60024901A /* default.scss */,
 				89659F971980D2CA00A5BC74 /* SCLAlertView.swift */,
 				8900D0E9197BDCBA0032753D /* CupertinoLine */,
@@ -1495,8 +1504,18 @@
 				8949640F197CF19E009984EB /* Widescreen.png */,
 				89496410197CF19E009984EB /* Widescreen@2x.png */,
 			);
-			name = PP;
-			path = "UbitInfo-iOS/PP";
+			path = PP;
+			sourceTree = "<group>";
+		};
+		89A0FCA91983AB8C0024901A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				89A0FCB3198416F20024901A /* Saucer-Bold.ttf */,
+				89A0FCB4198416F20024901A /* Saucer-Light.ttf */,
+				89A0FCB5198416F20024901A /* Saucer-Mono.ttf */,
+				89A0FCB6198416F20024901A /* Saucer-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B272294C694E408E9928A146 /* Frameworks */ = {
@@ -1642,6 +1661,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89A0FCB7198417160024901A /* Saucer-Bold.ttf in Resources */,
+				89A0FCB8198417160024901A /* Saucer-Light.ttf in Resources */,
+				89A0FCB9198417160024901A /* Saucer-Mono.ttf in Resources */,
+				89A0FCBA198417160024901A /* Saucer-Regular.ttf in Resources */,
 				89496465197CF19E009984EB /* Scanner.png in Resources */,
 				8949642F197CF19E009984EB /* Closed-Mail.png in Resources */,
 				8900D2DE197BDCBB0032753D /* Warning.png in Resources */,

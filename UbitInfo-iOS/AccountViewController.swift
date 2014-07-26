@@ -12,6 +12,7 @@ import UIKit
 class AccountViewController: XLFormViewController {
     var values: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
     
+    @IBOutlet var userSimpleInfoName: UILabel!
     @IBOutlet var userSimpleInfoJubilityImage: UIImageView!
     @IBOutlet var userSimpleInfoJubilityIndicator: UIActivityIndicatorView!
     @IBOutlet var userSimpleInfoUpdated: UILabel!
@@ -83,20 +84,11 @@ class AccountViewController: XLFormViewController {
         var button: UIBarButtonItem = UIBarButtonItem(title: localizedString("account.logout"), style: UIBarButtonItemStyle.Plain, target: self, action: "logout:")
         self.navigationItem.rightBarButtonItem = button
         
-        var form: XLFormDescriptor = XLFormDescriptor.formDescriptorWithTitle(localizedString("account"))
-        var section: XLFormSectionDescriptor = XLFormSectionDescriptor.formSection() as XLFormSectionDescriptor
-        var row: XLFormRowDescriptor
-        
-        form.addFormSection(section)
-        
-        row = XLFormRowDescriptor.formRowDescriptorWithTag("pfImage", rowType: "textView", title: "")
-        section.addFormRow(row)
-        
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "")
         self.refreshControl.addTarget(self, action: "getUserInfoWithControl:", forControlEvents: UIControlEvents.ValueChanged)
         
-        self.form = form
+        self.form = nil
         
         getUserInfo(true)
         self.tableView.tableHeaderView = self.userSimpleInfo
@@ -154,6 +146,9 @@ class AccountViewController: XLFormViewController {
     }
     
     func getUserInfo(direct: Bool) {
+        self.userSimpleInfoJubilityImage.image = nil
+        self.userSimpleInfoName.text = ""
+        
         userSimpleInfoJubilityIndicator.startAnimating()
         self.refreshControl.beginRefreshing()
         HttpClient.instance.getUserQuery(QUERY_INFO,
@@ -177,7 +172,6 @@ class AccountViewController: XLFormViewController {
     }
     
     func drawUserInfo(data: Dictionary<String, JSONValue?>) {
-        
         userSimpleInfoUpdated.text = "Updated at " + NSDate().toString("yyyy-MM-dd HH:mm:ss")
         
         let jubilityImagePath = data["info"]!!["jubility_image"].string as String
@@ -193,7 +187,9 @@ class AccountViewController: XLFormViewController {
                         self.userSimpleInfoJubilityImage.image = image
                         self.userSimpleInfoJubilityIndicator.stopAnimating()
                 }
-            })
+            }        )
+        
+        self.userSimpleInfoName.text = data["info"]!!["player_name"].string as String
     }
     
     func getUserInfoWithControl(sender: AnyObject) {
