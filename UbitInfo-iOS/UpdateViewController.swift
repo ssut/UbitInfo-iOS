@@ -42,15 +42,14 @@ class UpdateViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let reuseIdentifier = "Cell"
-        var cell:UITableViewCell? =
-        tableView?.dequeueReusableCellWithIdentifier(reuseIdentifier) as? UITableViewCell
+        let reuseIdentifier: String = "Cell"
+        var cell: UITableViewCell? = tableView?.dequeueReusableCellWithIdentifier(reuseIdentifier) as? UITableViewCell
         if !cell {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
                 reuseIdentifier: reuseIdentifier)
         }
         var section: NSArray = dataArray[indexPath.section] as NSArray
-        var item = section[indexPath.row] as JSONStatus
+        var item: JSONStatus = section[indexPath.row] as JSONStatus
         
         let suffix: String = (item.req_result ? localizedString("update.stat_ok") :
                              (item.req_processing ? localizedString("update.stat_doing") :
