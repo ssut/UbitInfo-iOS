@@ -192,6 +192,7 @@ class AccountViewController: XLFormViewController {
         
         self.userSimpleInfoName.text = data["info"]!!["player_name"].string as String
         
+        self.tableValues = Array<Array<String>>()
         self.tableValues.append(["asdf", "Bcdf"])
         self.tableView.reloadData()
     }
@@ -251,19 +252,5 @@ class AccountViewController: XLFormViewController {
         } else {
             super.tableView(tableView, willDisplayCell: cell, forRowAtIndexPath: indexPath)
         }
-        
-        
-//        XLFormRowDescriptor * row = [self.form formRowAtIndex:indexPath];
-//        if (row.disabled) {
-//            return;
-//        }
-//        else if (!([[row cellForFormController:self] respondsToSelector:@selector(formDescriptorCellBecomeFirstResponder)] && [[row cellForFormController:self] formDescriptorCellBecomeFirstResponder])){
-//            [self.tableView endEditing:YES];
-//        }
-//        [self didSelectFormRow:row];
-    }
-    
-    override func didSelectFormRow(formRow: XLFormRowDescriptor!) {
-        super.deselectFormRow(formRow)
     }
 }
