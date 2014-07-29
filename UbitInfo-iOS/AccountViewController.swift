@@ -11,6 +11,7 @@ import UIKit
 
 class AccountViewController: XLFormViewController {
     var values: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+    var tableValues: Array<Array<String>> = Array<Array<String>>()
     
     @IBOutlet var userSimpleInfoName: UILabel!
     @IBOutlet var userSimpleInfoJubilityImage: UIImageView!
@@ -190,9 +191,79 @@ class AccountViewController: XLFormViewController {
             }        )
         
         self.userSimpleInfoName.text = data["info"]!!["player_name"].string as String
+        
+        self.tableValues.append(["asdf", "Bcdf"])
+        self.tableView.reloadData()
     }
     
     func getUserInfoWithControl(sender: AnyObject) {
         getUserInfo(false)
+    }
+    
+    override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+        var sections: Int = 0
+        if HttpClient.instance.loggedIn {
+            sections = 1
+        } else {
+            sections = super.numberOfSectionsInTableView(tableView)
+        }
+        
+        return sections
+    }
+    
+    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        var rows: Int = 0
+        if HttpClient.instance.loggedIn {
+            rows = self.tableValues.count
+        } else {
+            rows = super.tableView(tableView, numberOfRowsInSection: section)
+        }
+        
+        return rows
+    }
+    
+    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        var cell: UITableViewCell!
+        if HttpClient.instance.loggedIn {
+            let reuseIdentifier: String = "Cell"
+            cell = tableView?.dequeueReusableCellWithIdentifier(reuseIdentifier) as? UITableViewCell
+            if !cell {
+                cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: reuseIdentifier)
+            }
+            
+            var item: Array<String> = self.tableValues[indexPath.row]
+            
+            cell!.textLabel.text = item[0]
+            cell!.detailTextLabel.text = item[1]
+            
+            cell!.userInteractionEnabled = false
+        } else {
+            cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        }
+        
+        return cell
+    }
+    
+    override func tableView(tableView: UITableView!, willDisplayCell cell: UITableViewCell!, forRowAtIndexPath indexPath: NSIndexPath!) {
+        if HttpClient.instance.loggedIn {
+            cell.setNeedsUpdateConstraints()
+            cell.setNeedsLayout()
+        } else {
+            super.tableView(tableView, willDisplayCell: cell, forRowAtIndexPath: indexPath)
+        }
+        
+        
+//        XLFormRowDescriptor * row = [self.form formRowAtIndex:indexPath];
+//        if (row.disabled) {
+//            return;
+//        }
+//        else if (!([[row cellForFormController:self] respondsToSelector:@selector(formDescriptorCellBecomeFirstResponder)] && [[row cellForFormController:self] formDescriptorCellBecomeFirstResponder])){
+//            [self.tableView endEditing:YES];
+//        }
+//        [self didSelectFormRow:row];
+    }
+    
+    override func didSelectFormRow(formRow: XLFormRowDescriptor!) {
+        super.deselectFormRow(formRow)
     }
 }
