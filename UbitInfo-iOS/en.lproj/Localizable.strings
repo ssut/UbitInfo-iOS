@@ -42,3 +42,16 @@
 "account.error.inputPW" = "Please input Ubitinfo PW";
 "account.loginOK" = "Login Success";
 
+// related with Jubeat
+"jubeat.jubility" = "Jubility";
+"jubeat.date" = "Date";
+"jubeat.tbs" = "TBS";
+"jubeat.country" = "Country";
+"jubeat.place" = "Place";
+"jubeat.exc" = "EXCELLENT";
+"jubeat.fc" = "FULL COMBO";
+"jubeat.tbs_rank" = "TBS RANK";
+"jubeat.tune" = "TUNE";
+"jubeat.update" = "Update";
+"jubeat.jubility_diff" = "Jubility Diff";
+
