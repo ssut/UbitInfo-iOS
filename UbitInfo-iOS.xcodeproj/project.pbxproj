@@ -276,6 +276,8 @@
 		892ABEFB1979939800D0B6AE /* UbitInfo_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892ABEFA1979939800D0B6AE /* UbitInfo_iOSTests.swift */; };
 		89307F61197B94EE00C3997C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89307F60197B94EE00C3997C /* SwiftyJSON.swift */; };
 		89307F63197B96CA00C3997C /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89307F62197B96CA00C3997C /* JSON.swift */; };
+		89380260198878C200EE0800 /* AccountViewTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8938025F198878C200EE0800 /* AccountViewTableCell.xib */; };
+		89380268198879CA00EE0800 /* AccountViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89380267198879CA00EE0800 /* AccountViewTableCell.swift */; };
 		8945078D197BF261006765FE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8945078C197BF261006765FE /* AccountViewController.swift */; };
 		89450843197CABDA006765FE /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89450807197CABDA006765FE /* XLFormBaseCell.m */; };
 		89450844197CABDA006765FE /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89450809197CABDA006765FE /* XLFormButtonCell.m */; };
@@ -749,6 +751,8 @@
 		89307F60197B94EE00C3997C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		89307F62197B96CA00C3997C /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		89307F65197B9AED00C3997C /* L.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = L.playground; sourceTree = "<group>"; };
+		8938025F198878C200EE0800 /* AccountViewTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountViewTableCell.xib; sourceTree = "<group>"; };
+		89380267198879CA00EE0800 /* AccountViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewTableCell.swift; sourceTree = "<group>"; };
 		8945078C197BF261006765FE /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		89450806197CABDA006765FE /* XLFormBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormBaseCell.h; sourceTree = "<group>"; };
 		89450807197CABDA006765FE /* XLFormBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLFormBaseCell.m; sourceTree = "<group>"; };
@@ -1265,6 +1269,8 @@
 				8949DF62197CFA4100824109 /* DataManager.swift */,
 				8949DF6A197D6BC900824109 /* Utils.swift */,
 				8923C1B1197FAB1B000F6613 /* Localizable.strings */,
+				8938025F198878C200EE0800 /* AccountViewTableCell.xib */,
+				89380267198879CA00EE0800 /* AccountViewTableCell.swift */,
 			);
 			path = "UbitInfo-iOS";
 			sourceTree = "<group>";
@@ -1751,6 +1757,7 @@
 				8900D23A197BDCBB0032753D /* Download-Line.png in Resources */,
 				8900D270197BDCBB0032753D /* List.png in Resources */,
 				8900D24F197BDCBB0032753D /* Glasses-Line@2x.png in Resources */,
+				89380260198878C200EE0800 /* AccountViewTableCell.xib in Resources */,
 				8900D26B197BDCBB0032753D /* List-Boxes@2x.png in Resources */,
 				8900D288197BDCBB0032753D /* Minus-Line.png in Resources */,
 				8900D25C197BDCBB0032753D /* Import-Line.png in Resources */,
@@ -2095,6 +2102,7 @@
 				89450854197CABDA006765FE /* XLFormDescriptor.m in Sources */,
 				89450855197CABDA006765FE /* XLFormRowDescriptor.m in Sources */,
 				892ABEEA1979939800D0B6AE /* SecondViewController.swift in Sources */,
+				89380268198879CA00EE0800 /* AccountViewTableCell.swift in Sources */,
 				8945085B197CABDA006765FE /* XLFormRightImageButton.m in Sources */,
 				89450858197CABDA006765FE /* NSObject+XLFormAdditions.m in Sources */,
 				89659F981980D2CA00A5BC74 /* SCLAlertView.swift in Sources */,

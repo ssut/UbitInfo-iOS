@@ -192,8 +192,10 @@ class AccountViewController: XLFormViewController {
         
         self.userSimpleInfoName.text = data["info"]!!["player_name"].string as String
         
+        println(data)
         self.tableValues = Array<Array<String>>()
-        self.tableValues.append(["asdf", "Bcdf"])
+        
+        self.tableValues.append(["a", "b", "c"])
         self.tableView.reloadData()
     }
     
@@ -224,21 +226,21 @@ class AccountViewController: XLFormViewController {
     }
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        var cell: UITableViewCell!
+        var cell: AccountViewTableCell?
         if HttpClient.instance.loggedIn {
             let reuseIdentifier: String = "Cell"
-            cell = tableView?.dequeueReusableCellWithIdentifier(reuseIdentifier) as? UITableViewCell
-            if !cell {
-                cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: reuseIdentifier)
+            cell = tableView?.dequeueReusableCellWithIdentifier(reuseIdentifier) as? AccountViewTableCell
+            if cell == nil {
+                tableView.registerNib(UINib(nibName: "AccountViewTableCell", bundle: nil), forCellReuseIdentifier: "Cell")
+                cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? AccountViewTableCell
             }
             
             var item: Array<String> = self.tableValues[indexPath.row]
-            
-            cell!.textLabel.text = item[0]
-            cell!.detailTextLabel.text = item[1]
-            
+
+            cell!.leftLabel.text = "adsf"    
             cell!.userInteractionEnabled = false
         } else {
+            var cell: UITableViewCell?
             cell = super.tableView(tableView, cellForRowAtIndexPath: indexPath)
         }
         
