@@ -237,7 +237,11 @@ class AccountViewController: XLFormViewController {
             
             var item: Array<String> = self.tableValues[indexPath.row]
 
-            cell!.leftLabel.text = "adsf"    
+            cell!.leftLabel.text = item[0]
+            cell!.rightLabel.text = item[1]
+            if let sub = item[2] as String? {
+                cell!.subLabel.text = sub
+            }
             cell!.userInteractionEnabled = false
         } else {
             var cell: UITableViewCell?
