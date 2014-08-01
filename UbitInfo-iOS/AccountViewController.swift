@@ -195,7 +195,10 @@ class AccountViewController: XLFormViewController {
         println(data)
         self.tableValues = Array<Array<String>>()
         
-        self.tableValues.append(["a", "b", "c"])
+        self.tableValues.append([
+            localizedString("jubeat.date"),
+            data["info"]!!["play_date"].string as String
+        ])
         self.tableView.reloadData()
     }
     
@@ -239,8 +242,8 @@ class AccountViewController: XLFormViewController {
 
             cell!.leftLabel.text = item[0]
             cell!.rightLabel.text = item[1]
-            if let sub = item[2] as String? {
-                cell!.subLabel.text = sub
+            if item.count == 3 {
+                cell!.subLabel.text = item[2]
             }
             cell!.userInteractionEnabled = false
         } else {
