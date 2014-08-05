@@ -122,7 +122,7 @@ class HttpClient {
                     if let c = json["code"].integer {
                         if c == 0 {
                             // access token for persistent seession
-                            let userToken: String = json["token"].string as String
+                            let userToken: String = json["token"].string as String!
                             
                             // save login data
                             let user: Dictionary<String, String> = [
@@ -192,7 +192,7 @@ class HttpClient {
                 var json = JSONValue(response)
                 if let logged = json["logged_in"].bool {
                     if logged {
-                        let userId = json["user_id"].string as String
+                        let userId = json["user_id"].string as String!
                         callback(true, userId)
                     } else {
                         HttpClient.instance.logout()

@@ -101,13 +101,13 @@ class AccountViewController: XLFormViewController {
         updateFormValues()
         
         // check id field
-        if !self.values["id"] || (self.values["id"] as AnyObject? as? String) == "" {
+        if self.values["id"] != nil || (self.values["id"] as AnyObject? as? String) == "" {
             var message = UIAlertView(title: localizedString("global.error"), message: localizedString("account.error.inputID"), delegate: self, cancelButtonTitle: "OK")
             message.show()
         }
         
         // check password field
-        else if !self.values["password"] || (self.values["password"] as AnyObject? as? String) == "" {
+        else if self.values["password"] != nil || (self.values["password"] as AnyObject? as? String) == "" {
             var message = UIAlertView(title: localizedString("global.error"), message: localizedString("account.error.inputPW"), delegate: self, cancelButtonTitle: "OK")
             message.show()
         }
@@ -166,7 +166,7 @@ class AccountViewController: XLFormViewController {
                     return
                 }
                 
-                self.drawUserInfo(data as Dictionary<String, JSONValue?>)
+                self.drawUserInfo(data as Dictionary<String, JSONValue?>!!)
                 self.refreshControl.endRefreshing()
             }
         )
@@ -175,7 +175,7 @@ class AccountViewController: XLFormViewController {
     func drawUserInfo(data: Dictionary<String, JSONValue?>) {
         userSimpleInfoUpdated.text = "Updated at " + NSDate().toString("yyyy-MM-dd HH:mm:ss")
         
-        let jubilityImagePath = data["info"]!!["jubility_image"].string as String
+        let jubilityImagePath = data["info"]!!["jubility_image"].string as String!
         let jubilityImageURL: NSURL = buildURL(jubilityImagePath).nsurl
 
         SDWebImageDownloader.sharedDownloader().downloadImageWithURL(
@@ -190,14 +190,14 @@ class AccountViewController: XLFormViewController {
                 }
             }        )
         
-        self.userSimpleInfoName.text = data["info"]!!["player_name"].string as String
+        self.userSimpleInfoName.text = data["info"]!!["player_name"].string as String!
         
         println(data)
         self.tableValues = Array<Array<String>>()
         
         self.tableValues.append([
             localizedString("jubeat.date"),
-            data["info"]!!["play_date"].string as String
+            data["info"]!!["play_date"].string as String!
         ])
         self.tableView.reloadData()
     }
